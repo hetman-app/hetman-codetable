@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hetman-codetable"
-version = "1.0.1"
+version = "1.0.2"
 description = "Hetman Codetable provides centralized, standardized response codes for APIs and applications. It ensures consistency by treating codes as a single source of truth."
 readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = ">=3.12"
@@ -15,7 +15,7 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
 ]
-dependencies = []
+dependencies = ["hetman-kit-localize>=1.0.0"]
 
 [project.urls]
 Homepage = "https://github.com/hetman-app/hetman-codetable"
