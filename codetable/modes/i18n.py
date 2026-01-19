@@ -26,19 +26,10 @@ class i18n(Code):
 
         Args:
             **msg (str): Keyword arguments mapping locale codes to message strings.
-
-        Raises:
-            RuntimeError: If `_base_locale` has not been set prior to initialization.
         """
         super().__init__()
 
         self.msg: dict[str, str] = msg
-
-        if not hasattr(self, "_base_locale"):
-            raise RuntimeError(
-                "Before the first i18n call, you must call "
-                "i18n.set_base_locale() because a base locale is required."
-            )
 
     def compute_value(self) -> str:
         """
@@ -81,7 +72,15 @@ class i18n(Code):
 
         Returns:
             str: The base locale code.
+
+        Raises:
+            RuntimeError: If `_base_locale` has not been set.
         """
+        if not hasattr(cls, "_base_locale"):
+            raise RuntimeError(
+                "Base locale is not set. Use i18n.set_base_locale() to define the base locale."
+            )
+
         return cls._base_locale
 
     @classmethod
