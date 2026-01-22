@@ -73,6 +73,22 @@ print(UserSuccess.UPDATED)
 # Output: {'code': 'user.updated', 'msg': 'Użytkownik został zaktualizowany pomyślnie.'}
 ```
 
+### Lazy Load
+
+```python
+i18n.set_locale("en")
+
+error = UserError.lazy("ALREADY_EXISTS")
+
+print(error())
+# Output: {'code': 'user.already_exists', 'msg': 'User already exists.'}
+
+success = UserSuccess.lazy("UPDATED")
+
+print(success())
+# Output: {'code': 'user.updated', 'msg': 'User updated successfully.'}
+```
+
 ### Customizing Key Maps
 
 You can custom output keys globally or per-table by modifying the `key_map`.
@@ -87,7 +103,7 @@ print(UserError.ALREADY_EXISTS)
 
 ## Core Features
 
--   **Namespace Management**: Automatically prefixes codes with the table's namespace (e.g., `user.not_found`).
--   **Strict Typing**: Built with Python type hints for excellent IDE support.
--   **Dynamic Descriptor Protocol**: Codes know their own variable names and parent tables automatically.
--   **Context-Aware I18n**: Uses `contextvars` to handle per-request locales safely in async environments.
+- **Namespace Management**: Automatically prefixes codes with the table's namespace (e.g., `user.not_found`).
+- **Strict Typing**: Built with Python type hints for excellent IDE support.
+- **Dynamic Descriptor Protocol**: Codes know their own variable names and parent tables automatically.
+- **Context-Aware I18n**: Uses `contextvars` to handle per-request locales safely in async environments.

@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
 from codetable.core.codetable import Codetable
+from codetable.core.resources.types import CodeResult
 
 
 class Code(ABC):
@@ -10,7 +11,6 @@ class Code(ABC):
     This class implements the descriptor protocol to automatically bind to a `Codetable`
     subclass and a variable name.
     """
-
     def __init__(self) -> None:
         """Initializes a new Code instance."""
         self.codetable: type[Codetable] | None = None
@@ -29,12 +29,12 @@ class Code(ABC):
         self.codetable = codetable
         self.variable_name = variable_name
 
-    def __get__(self, *_) -> dict[str, str]:
+    def __get__(self, *_) -> CodeResult:
         """
         Retrieves the code definitions when accessed on the Codetable class or instance.
 
         Returns:
-            dict[str, str]: A dictionary containing the 'code' and its computed 'value'.
+            CodeResult: A dictionary containing the 'code' and its computed 'value'.
                 The keys are determined by the `Codetable.key_map`.
 
         Raises:
